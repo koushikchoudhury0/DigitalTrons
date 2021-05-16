@@ -24,19 +24,19 @@ The Problem Statement & Instructions can be found [here](https://docs.google.com
 
 
 ## Deployment & Execution
-MySQL Version: 8.x
-Database Host: AWS RDS (Publicly Accessible)
-Architecture: Serverless (AWS Lambda with Layers)
-Runtime: Nodejs 12.x
-NPM Modules Used: mysql2, aws-sdk
-API Host: AWS API Gateway
-API Endpoint: https://294mopo2r0.execute-api.ap-south-1.amazonaws.com/development
-API Tested Using: Postman
-Deployment: AWS SAM (Partially IaaC)
-CloudFormation Stack Name: DigitalTrons
+MySQL Version: 8.x <br />
+Database Host: AWS RDS (Publicly Accessible) <br />
+Architecture: Serverless (AWS Lambda with Layers) <br />
+Runtime: Nodejs 12.x <br />
+NPM Modules Used: mysql2, aws-sdk <br />
+API Host: AWS API Gateway <br />
+API Endpoint: https://294mopo2r0.execute-api.ap-south-1.amazonaws.com/development <br />
+API Tested Using: Postman <br />
+Deployment: AWS SAM (Partially IaaC) <br />
+CloudFormation Stack Name: DigitalTrons <br />
 
-**NOTE: All Functions, API Resources, Invoke Permissions were deployed using AWS SAM**
-**NOTE: Functions use AWS Secrets Manager to obtain Database Credentials**
+**NOTE: All Functions, API Resources, Invoke Permissions were deployed using AWS SAM** <br />
+**NOTE: Functions use AWS Secrets Manager to obtain Database Credentials** <br />
 
 ## Technical Offloading or Load Distribution
 1. The FileSystem Data follows a Hierarchical Model, which is managed as **Adjacent Data** in MySQL, so everytime we needed to find out the exact path at any level, we'd have to run a `Recursive Query` with or without filters. So, `View` named `file_hierarchy` was created that has the `Recursive Query` as it's base. This made querying from the Runtime Environment easy and short.
@@ -45,41 +45,41 @@ CloudFormation Stack Name: DigitalTrons
 4. `AWS Secrets Manager` is used to offload the chances of Updating each `Lambda Function` in case a change in credential takes place.
 
 ## Tasks & How-to 
-**NOTE: All requests must be made in POST Method**
-**NOTE: Request Body must be in JSON Format, Responses are also retrieved in JSON Format**
-**NOTE: {statusCode: 1[, ...]} indicates a successful execution along with some other optional/expected data**
-**NOTE: {statusCode: 0, msg: "ERROR_MSG", [, ...]} indicates a failed execution along with some other optional/expected data**
+**NOTE: All requests must be made in POST Method** <br />
+**NOTE: Request Body must be in JSON Format, Responses are also retrieved in JSON Format** <br />
+**NOTE: {statusCode: 1[, ...]} indicates a successful execution along with some other optional/expected data** <br />
+**NOTE: {statusCode: 0, msg: "ERROR_MSG", [, ...]} indicates a failed execution along with some other optional/expected data** <br />
 
-**Tasks 3,4,7** can be accessed from API Endpoint */search*:
-If *Blank Request Body* is provided, *Complete FileSystem* is shown
-Sample Request Body: { }
-
-If *A Node* is provided, *It's Descending Hierarchy* is shown. This also corresponds to the 'Searching' feature.
+**Tasks 3,4,7** can be accessed from API Endpoint */search*: <br />
+If *Blank Request Body* is provided, *Complete FileSystem* is shown <br />
+Sample Request Body: { } <br />
+<br />
+If *A Node* is provided, *It's Descending Hierarchy* is shown. This also corresponds to the 'Searching' feature. <br />
 Sample Request Body: {
     "node": "Folder6"
-}
-
-**Task 1** can be accessed from API Endpoint */add*
+} <br />
+<br />
+**Task 1** can be accessed from API Endpoint */add* <br />
 Sample Request Body: {
     "path": "/Folder1/Folder4/",
     "d": 1,
     "node": "Folder7"
-}
-
-**Task 2** can be accessed from API Endpoint */delete*
+} <br />
+<br />
+**Task 2** can be accessed from API Endpoint */delete* <br />
 Sample Request Body: {
     "node": "Folder6"
-}
-
-**Task 5** can be accessed from API Endpoint */move*
-If *The Target is NOT a FOLDER*, an appropriate error message is returned
+} <br />
+<br />
+**Task 5** can be accessed from API Endpoint */move* <br />
+If *The Target is NOT a FOLDER*, an appropriate error message is returned <br />
 Sample Request Body: {
     "node": "File3",
     "target": "Folder1"
-}
-
-**Task 6** can be accessed from API Endpoint */notifications*
-Sample Request Body: {}
+} <br />
+<br />
+**Task 6** can be accessed from API Endpoint */notifications* <br />
+Sample Request Body: {} <br />
 
 
 ## Improvments
