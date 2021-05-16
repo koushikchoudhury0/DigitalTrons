@@ -1,0 +1,11 @@
+{
+  "name": "MoveNode",
+  "version": "1.0.0",
+  "description": "Moves a Folder or File",
+  "main": "index.js",
+  "scripts": {
+    "test": "sam local invoke MoveNode -e event.json"
+  },
+  "author": "Koushik",
+  "license": "ISC"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "AddEntry",
+  "version": "1.0.0",
+  "description": "Add a new Folder or File",
+  "main": "index.js",
+  "scripts": {
+    "test": "sam local invoke DeleteNode -e event.json"
+  },
+  "author": "Koushik",
+  "license": "ISC"
+}

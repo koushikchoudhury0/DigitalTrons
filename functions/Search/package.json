@@ -1,0 +1,11 @@
+{
+  "name": "Search",
+  "version": "1.0.0",
+  "description": "View Complete or Targetted Hierarchy of a Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "sam local invoke Search -e event.json"
+  },
+  "author": "Koushik",
+  "license": "ISC"
+}

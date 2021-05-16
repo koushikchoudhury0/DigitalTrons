@@ -1,0 +1,138 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Globals:
+  Function:
+    Runtime: nodejs14.x  
+    Handler: index.handler   
+    Environment: 
+      Variables:
+        DEPLOYMENT: SERVER     
+        SECRET: interview/database   
+    MemorySize: 128
+    Timeout: 3
+    Layers:
+      - arn:aws:lambda:ap-south-1:513251318144:layer:layer-1:10 
+
+Resources:
+  
+  #API
+  DigitalTronsAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: development      
+      DefinitionUri: ./api/swagger.yaml
+  
+  #Functions
+  AddNode:
+    Type: AWS::Serverless::Function
+    Properties: 
+      FunctionName: AddNode
+      CodeUri: ./functions/AddNode
+      Role: arn:aws:iam::513251318144:role/Lambda-General
+    Event:
+      Api:
+        Type: Api
+        Properties:
+          Path: /add
+          Method: POST
+          RestApiId: !Ref DigitalTronsAPI
+  DeleteNode:
+    Type: AWS::Serverless::Function
+    Properties: 
+      FunctionName: DeleteNode
+      CodeUri: ./functions/DeleteNode
+      Role: arn:aws:iam::513251318144:role/Lambda-General
+    Event:
+      Api:
+        Type: Api
+        Properties:
+          Path: /delete
+          Method: POST
+          RestApiId: !Ref DigitalTronsAPI
+  Search:
+    Type: AWS::Serverless::Function
+    Properties: 
+      FunctionName: Search
+      CodeUri: ./functions/Search
+      Role: arn:aws:iam::513251318144:role/Lambda-General
+    Event:
+      Api:
+        Type: Api
+        Properties:
+          Path: /search
+          Method: POST
+          RestApiId: !Ref DigitalTronsAPI
+  MoveNode:
+    Type: AWS::Serverless::Function
+    Properties: 
+      FunctionName: MoveNode
+      CodeUri: ./functions/MoveNode
+      Role: arn:aws:iam::513251318144:role/Lambda-General
+    Event:
+      Api:
+        Type: Api
+        Properties:
+          Path: /move
+          Method: POST
+          RestApiId: !Ref DigitalTronsAPI
+  ViewNotifications:
+    Type: AWS::Serverless::Function
+    Properties: 
+      FunctionName: ViewNotifications
+      CodeUri: ./functions/ViewNotifications
+      Role: arn:aws:iam::513251318144:role/Lambda-General
+    Event:
+      Api:
+        Type: Api
+        Properties:
+          Path: /notifications
+          Method: POST
+          RestApiId: !Ref DigitalTronsAPI  
+  
+  #Permissions
+  AddNodePermission:
+    Type: "AWS::Lambda::Permission"
+    DependsOn:
+      - DigitalTronsAPI
+      - AddNode
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref AddNode
+      Principal: apigateway.amazonaws.com
+  DeleteNodePermission:
+    Type: "AWS::Lambda::Permission"
+    DependsOn:
+      - DigitalTronsAPI
+      - DeleteNode
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DeleteNode
+      Principal: apigateway.amazonaws.com
+  SearchPermission:
+    Type: "AWS::Lambda::Permission"
+    DependsOn:
+      - DigitalTronsAPI
+      - Search
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref Search
+      Principal: apigateway.amazonaws.com
+  MovePermission:
+    Type: "AWS::Lambda::Permission"
+    DependsOn:
+      - DigitalTronsAPI
+      - MoveNode
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref MoveNode
+      Principal: apigateway.amazonaws.com
+  ViewNotificationPermission:
+    Type: "AWS::Lambda::Permission"
+    DependsOn:
+      - DigitalTronsAPI
+      - ViewNotifications
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ViewNotifications
+      Principal: apigateway.amazonaws.com

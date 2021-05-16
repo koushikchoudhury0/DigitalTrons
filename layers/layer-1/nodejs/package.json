@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "mysql2": "^2.2.5"
+  },
+  "name": "layer-1",
+  "version": "1.0.0",
+  "description": "Common Libraries",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Koushik",
+  "license": "ISC"
+}

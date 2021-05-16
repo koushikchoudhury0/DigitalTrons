@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "259029f1-e41e-495e-bc96-e94567f1c3e3",
+		"name": "DigitalTrons",
+		"description": "Interview Assignment for DigitalTrons",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"path\": \"/Folder1/Folder4/Folder6/Folder7/\",\n    \"d\": 0,\n    \"node\": \"File6\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://294mopo2r0.execute-api.ap-south-1.amazonaws.com/development/add",
+					"protocol": "https",
+					"host": [
+						"294mopo2r0",
+						"execute-api",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"development",
+						"add"
+					]
+				},
+				"description": "Add a File or Folder"
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"node\": \"File3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://294mopo2r0.execute-api.ap-south-1.amazonaws.com/development/search",
+					"protocol": "https",
+					"host": [
+						"294mopo2r0",
+						"execute-api",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"development",
+						"search"
+					]
+				},
+				"description": "Add a File or Folder.\n\nTo View All Files, Specify a blank body."
+			},
+			"response": []
+		},
+		{
+			"name": "Notifications",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"node\": \"File3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://294mopo2r0.execute-api.ap-south-1.amazonaws.com/development/search",
+					"protocol": "https",
+					"host": [
+						"294mopo2r0",
+						"execute-api",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"development",
+						"search"
+					]
+				},
+				"description": "Add a File or Folder.\n\nTo View All Files, Specify a blank body."
+			},
+			"response": []
+		},
+		{
+			"name": "Move",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"node\": \"File3\",\n    \"target\": \"Folder1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://294mopo2r0.execute-api.ap-south-1.amazonaws.com/development/move",
+					"protocol": "https",
+					"host": [
+						"294mopo2r0",
+						"execute-api",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"development",
+						"move"
+					]
+				},
+				"description": "Moves a File or Folder"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"node\": \"Folder6\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://294mopo2r0.execute-api.ap-south-1.amazonaws.com/development/delete",
+					"protocol": "https",
+					"host": [
+						"294mopo2r0",
+						"execute-api",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"development",
+						"delete"
+					]
+				},
+				"description": "Deletes a File and Folder (in case of Folder, all descendants are deleted)"
+			},
+			"response": []
+		}
+	]
+}

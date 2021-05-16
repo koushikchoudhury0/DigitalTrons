@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Resources:
+  MoveNode:
+    Type: AWS::Serverless::Function
+    Properties: 
+      FunctionName: MoveNode
+      CodeUri: .
+      Runtime: nodejs12.x
+      Handler: index.handler
+      Environment:
+        Variables:
+          DEPLOYMENT: LOCAL 
+      Layers:
+        - arn:aws:lambda:ap-south-1:513251318144:layer:layer-1:10
